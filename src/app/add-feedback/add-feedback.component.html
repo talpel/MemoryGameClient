@@ -1,0 +1,17 @@
+<h4 class="page-title">הוספת פידבק</h4>
+<hr>
+<div class="feedback-container">
+    <div class="feedback-image-container">
+      <img src="../../assets/user-image.png" class="feedback-image">
+    </div>
+    <div class="feedback-box">
+      <textarea [(ngModel)]="Feedback"></textarea>
+    </div>
+  </div>
+  <div class="btn-send-container">
+    <button type="button" class="btn btn-success btn-send-feedback" (click)="InsertFeedback()">שלח פידבק</button>
+  </div>
+
+  <div class="add-feedback-img">
+      <img src="../../assets/feedback.png" />
+  </div>

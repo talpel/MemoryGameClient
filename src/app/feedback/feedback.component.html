@@ -1,0 +1,15 @@
+<h4 class="page-title">פידבקים</h4>
+<hr>
+<div class="feedback-container" *ngFor="let feedback of feedbacks">
+  <div class="feedback-image-container">
+    <img src="../../assets/user-image.png" class="feedback-image">
+  </div>
+  <div class="feedback-box">
+    <span class="feedback-writer">{{feedback.Users.FullName}}</span>
+    <div class="feedback-content" [innerHTML]="feedback?.FeedbackText">
+    </div>
+    <div class="feedback-datetime">
+        {{feedback.FeedbackDateTime | date:'dd/MM/yyyy HH:mm'}}
+    </div>
+  </div>
+</div>

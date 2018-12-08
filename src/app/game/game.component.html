@@ -1,0 +1,36 @@
+<div class="game-container">
+
+  <div id="time">
+    <h1><span>{{timerDisplay.m}}</span>:<span>{{timerDisplay.s}}</span>:<span>{{timerDisplay.ms}}</span></h1>
+  </div>
+
+  <div id="steps">
+      <h5>צעדים: {{CountOfSteps}} </h5>
+    </div>
+
+  <div class="game-board">
+    <div class="start-cover" *ngIf="gameIsStarted == false">
+      <div class="finish-title" *ngIf="gameIsFinished == true">
+        <span>
+          כל הכבוד!
+          <br>
+          זמן משחק:
+        </span>
+        <span>{{timerDisplay.m}}</span>:<span>{{timerDisplay.s}}</span>:<span>{{timerDisplay.ms}}</span>
+        <br>
+        מספר צעדים:
+        <br>
+        {{CountOfSteps}}
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="startGame()">התחל משחק</button>
+
+    </div>
+    <div class="board-row" *ngFor="let row of gameBoard">
+      <div class="board-cell" *ngFor="let cell of row" (click)="openCard(cell)" [ngClass]="{ 'hidden-card': cell.isHidden }">
+
+        <img [src]="cell.cardImage" *ngIf="cell.cardImage && cell.isOpen" class="card-image">
+      </div>
+    </div>
+  </div>
+</div>

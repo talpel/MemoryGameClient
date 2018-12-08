@@ -1,0 +1,91 @@
+.game-container {
+    text-align: center;
+    position: relative;
+}
+.game-board {
+    margin: 20px;
+    background-image: url('../../assets/gameover.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    position: relative;
+}
+
+.board-row {
+    display: flex;
+    justify-content: center;
+}
+
+.board-cell {
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    margin: 5px;
+    transition: all linear 0.2s;
+    cursor: pointer;
+}
+
+.board-cell:hover {
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.hidden-card {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card-image {
+    width: 120px;
+    height: 120px;
+}
+
+.stoper-container {
+    margin:0;padding:0;box-sizing:border-box;
+    font-family:Arial;
+    font-size:2.35em;
+    color:black;
+
+}
+
+#steps {
+    position: absolute;
+    right: 20px;
+}
+
+#time {
+    position: absolute;
+    left: 20px;
+}
+
+#time p{
+  font-size:0.3em;
+}
+
+.start-cover {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.start-cover .btn {
+    margin: auto;
+}
+
+.finish-title {
+    color: #8fff8f;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px;
+    line-height: 2;
+    display: block;
+    font-size: 32px;
+}

@@ -1,0 +1,123 @@
+.main-box {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.menu-side {
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 49, 87, 1);
+    box-shadow: 0px 0px 7px 2px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.content-side {
+    flex: 1;
+    height: 100%;
+    padding-top: 50px;
+    box-sizing: border-box;
+    z-index: 0;
+    background-color: #c0c0c0;
+}
+
+.main-header {
+    height: 50px;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 49, 87, 1);
+    box-shadow: 0px 0px 7px 2px rgba(0,0,0,0.5);
+    z-index: 2;
+    display: flex;
+}
+
+.main-title {
+    color: white;
+    text-align: center;
+    padding-top: 11px;
+    font-weight: bold;
+}
+
+.menu-side {
+    padding-top: 70px;
+
+}
+
+.menu-item {
+    height: 50px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    padding: 11px;
+    background-color: #003e6d;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: #636363;
+    cursor: pointer;
+    transition: all linear 0.1s;
+}
+
+.menu-item:first-of-type {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.menu-item:hover {
+    padding-right: 14px;
+    background-color: #00467c;
+}
+
+.route-box {
+    background-color: #ededed;
+    margin: 10px;
+    box-shadow: 0 0 8px 0px rgba(0,0,0,0.5);
+    height: calc(100% - 20px);
+    overflow: auto;
+}
+
+.menu-icon {
+    margin: 0 6px;
+}
+
+.middle-header {
+    flex: 1;
+    text-align: center;
+}
+
+.right-header {
+    flex: 1;
+    text-align: right;
+    line-height: 2;
+}
+
+.left-header {
+    flex: 1;
+    text-align: left;
+}
+
+.small-header-text {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 39px;
+    line-height: 3.2;
+}
+
+.a-small-header-text {
+    color: white !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+    line-height: 3.2 !important;
+}
+
+a.a-small-header-text {
+    cursor: pointer;
+}
+
+.active {
+    background-color: #0c7fc0;
+}

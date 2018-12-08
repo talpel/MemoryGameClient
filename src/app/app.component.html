@@ -1,21 +1,170 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="main-header">
+  <div class="right-header">
+    <div *ngIf="!myGlobals.LoginUser">
+        <span class="small-header-text"> 
+          <i class="fas fa-user"></i>
+            שלום אורח!
+        </span>
+        <a class="a-small-header-text" (click)="openModal(SignUpContent)">
+          הרשמה
+        </a>
+        <span class="a-small-header-text"> | </span>
+        <a class="a-small-header-text" (click)="openModal(LoginContent)">
+            התחברות
+          </a>
+    </div>
+    <div *ngIf="myGlobals.LoginUser">
+        <span class="small-header-text"> 
+          <i class="fas fa-user"></i>
+            שלום {{myGlobals.LoginUser?.FullName}}!
+        </span>
+        <a class="a-small-header-text" (click)="logout()">
+          התנתק
+        </a>
+    </div>
 
-<router-outlet></router-outlet>
+   
+  </div>
+  <div class="middle-header">
+    <h5 class="main-title">משחק הזיכרון</h5>
+  </div>
+  <div class="left-header">
+
+  </div>
+</div>
+<div class="main-box">
+  <div class="menu-side">
+    <div class="menu-item" routerLink="/main" routerLinkActive="active">
+      <i class="fas fa-home menu-icon"></i>
+      דף הבית
+    </div>
+    <div class="menu-item" routerLink="/game" routerLinkActive="active" *ngIf="myGlobals.LoginUser">
+      <i class="fas fa-dice menu-icon"></i>
+      משחק
+    </div>
+    <div class="menu-item" routerLink="/top-rated" routerLinkActive="active">
+      <i class="fas fa-trophy menu-icon"></i>
+      תוצאות משחקים
+    </div>
+    <div class="menu-item" routerLink="/feedback" routerLinkActive="active">
+      <i class="fas fa-comments menu-icon"></i>
+      פידבקים
+    </div>
+    <div class="menu-item" routerLink="/add-feedback" routerLinkActive="active" *ngIf="myGlobals.LoginUser">
+      <i class="fas fa-comment menu-icon"></i>
+      הוספת פידבק
+    </div>
+    <div class="menu-item" routerLink="/about" routerLinkActive="active">
+      <i class="fas fa-info-circle menu-icon"></i>
+      אודות
+    </div>
+    <div class="menu-item" routerLink="/contact-us" routerLinkActive="active">
+      <i class="fas fa-phone menu-icon"></i>
+      צור קשר
+    </div>
+  </div>
+  <div class="content-side">
+    <div class="route-box">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<ng2-toasty></ng2-toasty>
+
+<ng-template #SignUpContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">הרשמה</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form style="direction: ltr !important" [ngClass]="{ 'was-validated': validated }" class="container" novalidate=""
+      id="myForm" name="myForm" #myForm="ngForm">
+      <div class="form-group row">
+        <label for="fullName" class="col-3 col-form-label">שם מלא</label>
+        <div class="col-9">
+          <input class="form-control" name="fullName" [(ngModel)]="User.fullName" #fullName="ngModel" type="text" id="fullName"
+            required>
+          <div class="invalid-feedback" *ngIf="fullName.errors?.required">שדה חובה!</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="userName" class="col-3 col-form-label">שם משתמש</label>
+        <div class="col-9">
+          <input class="form-control" type="text" [(ngModel)]="User.userName" id="userName" name="userName" required
+            #userName="ngModel">
+          <div class="invalid-feedback" *ngIf="userName.errors?.required">שדה חובה!</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="password" class="col-3 col-form-label">סיסמה</label>
+        <div class="col-9">
+          <input class="form-control" type="password" [(ngModel)]="User.password" id="password" name="password"
+            required #password="ngModel">
+          <div class="invalid-feedback" *ngIf="password.errors?.required">שדה חובה!</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="email" class="col-3 col-form-label">אימייל</label>
+        <div class="col-9">
+          <input class="form-control" type="email" [(ngModel)]="User.email" id="email" name="email">
+          <div class="invalid-feedback">דוא"ל לא חוקי</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="birthDay" class="col-3 col-form-label">תאריך לידה</label>
+        <div class="col-9">
+          <input (click)="d2.toggle()" class="form-control" [(ngModel)]="User.birthDay" type="date" id="birthDay"
+            placeholder="yyyy-mm-dd" ngbDatepicker #d2="ngbDatepicker" name="birthDay">
+          <div class="invalid-feedback">תאריך לא חוקי</div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="signUp(myForm)">הירשם</button>
+  </div>
+</ng-template>
+
+<ng-template #LoginContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">התחברות</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form style="direction: ltr !important" [ngClass]="{ 'was-validated': validated }" class="container" novalidate=""
+        id="myForm" name="myForm" #myForm="ngForm">
+  
+        <div class="form-group row">
+          <label for="userName" class="col-3 col-form-label">שם משתמש</label>
+          <div class="col-9">
+            <input class="form-control" type="text" [(ngModel)]="User.userName" id="userName" name="userName" required
+              #userName="ngModel">
+            <div class="invalid-feedback" *ngIf="userName.errors?.required">שדה חובה!</div>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label for="password" class="col-3 col-form-label">סיסמה</label>
+          <div class="col-9">
+            <input class="form-control" type="password" [(ngModel)]="User.password" id="password" name="password"
+              required #password="ngModel">
+            <div class="invalid-feedback" *ngIf="password.errors?.required">שדה חובה!</div>
+          </div>
+        </div>
+  
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="login(myForm)">התחבר</button>
+    </div>
+  </ng-template>

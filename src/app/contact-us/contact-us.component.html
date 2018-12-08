@@ -1,0 +1,35 @@
+<h4 class="page-title">יצירת קשר</h4>
+<hr>
+<form style="direction: ltr !important" [ngClass]="{ 'was-validated': validated }" class="container" novalidate=""
+      id="myForm" name="myForm" #myForm="ngForm">
+      <div class="form-group row">
+        <label for="PhoneNumber" class="col-3 col-form-label">מספר טלפון</label>
+        <div class="col-9">
+          <input class="form-control" name="PhoneNumber" [(ngModel)]="frmObject.PhoneNumber" #PhoneNumber="ngModel" type="tel" id="PhoneNumber">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="Email" class="col-3 col-form-label">דוא"ל</label>
+        <div class="col-9">
+          <input class="form-control" type="email" [(ngModel)]="frmObject.Email" id="Email" name="Email"
+            #Email="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="password" class="col-3 col-form-label">תוכן ההודעה</label>
+        <div class="col-9">
+          <textarea class="form-control" type="password" [(ngModel)]="frmObject.MessageText" id="MessageText" name="MessageText"
+            required #password="ngModel"></textarea>
+          <div class="invalid-feedback" *ngIf="password.errors?.required">שדה חובה!</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <button type="button" class="btn btn-success" (click)="SendMessage(myForm)">שלח הודעה</button>
+      </div>
+    </form>  
+    <div style="width: 100%; text-align: center">
+      <img src="../../assets/contact.png" style="width: 400px;" />
+    </div> 

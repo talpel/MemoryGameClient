@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ng2-toasty/style-default.css";
+
+body {
+    padding: 0;
+    margin: 0;
+    direction: rtl !important;
+}
+
+body * {
+    direction: rtl !important;
+    text-align: right;
+}
+
+.modal-header .close {
+    padding: 1rem;
+    margin: -1rem -1rem -1rem -1rem;
+}
+
+.page-title {
+    padding-top: 10px;
+    padding-right: 10px;
+}
